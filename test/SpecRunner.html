@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+  <title>Mocha Spec Runner</title>
+
+  <link rel="stylesheet" href="lib/mocha/mocha.css">
+  <script src="lib/jquery/jquery.js"></script>
+  <script src="lib/underscore/underscore.js"></script>
+  <script src="lib/chai/chai.js"></script>
+  <script src="lib/sinon/sinon.js"></script>
+  <script src="lib/sinon/sinon-chai.js"></script>
+  <script src="lib/mocha/mocha.js"></script>
+  <script src="lib/backbone.js"></script>
+
+  <script>
+  mocha.setup('bdd');
+  var expect = chai.expect;
+  $(function() {
+    window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
+  });
+  </script>
+
+  <script src="../client/models/SongModel.js"></script>
+  <script src="../client/collections/Songs.js"></script>
+  <script src="../client/collections/SongQueue.js"></script>
+  <script src="../client/models/AppModel.js"></script>
+
+  <script src="../client/views/PlayerView.js"></script>
+  <script src="../client/views/SongQueueEntryView.js"></script>
+  <script src="../client/views/SongQueueView.js"></script>
+  <script src="../client/views/LibraryView.js"></script>
+  <script src="../client/views/LibraryEntryView.js"></script>
+  <script src="../client/views/AppView.js"></script>
+
+  <script src="spec/AppSpec.js"></script>
+  <script src="spec/AppViewSpec.js"></script>
+  <script src="spec/LibraryEntryViewSpec.js"></script>
+  <script src="spec/LibraryViewSpec.js"></script>
+  <script src="spec/PlayerViewSpec.js"></script>
+  <script src="spec/SongQueueSpec.js"></script>
+  <script src="spec/SongQueueViewSpec.js"></script>
+  <script src="spec/SongSpec.js"></script>
+
+</head>
+<body>
+<div id="mocha"></div>
+</body>
+</html>
