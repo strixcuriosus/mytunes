@@ -5,7 +5,7 @@ var SongQueue = Songs.extend({
 
     this.on('add', function(){
       if (!params && this.length === 1){
-        this.playFirst();
+        // this.playFirst(); // We don't like this 'feature'
       }
     }, this);
 

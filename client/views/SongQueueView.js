@@ -20,6 +20,12 @@ var SongQueueView = Backbone.View.extend({
       } ,this );
   },
 
+  events: {
+    'click': function(){
+      this.collection.playFirst();
+    }
+  },
+
   render: function() {
     this.$el.children().detach();
 
