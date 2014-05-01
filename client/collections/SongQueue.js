@@ -4,7 +4,7 @@ var SongQueue = Songs.extend({
   initialize: function(params){
 
     this.on('add', function(){
-      if (!params){
+      if (!params && this.length === 1){
         this.playFirst();
       }
     }, this);
@@ -19,8 +19,10 @@ var SongQueue = Songs.extend({
     this.on('dequeue', function(song) {
       this.remove(song);
     }, this);
+
     this.on('enqueue', function(song) {
       this.add(song);
+      console.log('enqueue event heard by SongQueue');
     }, this);
 
     // this.playFirst();
