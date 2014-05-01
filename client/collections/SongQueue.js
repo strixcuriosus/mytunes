@@ -8,11 +8,17 @@ var SongQueue = Songs.extend({
         this.playFirst();
       }
     }, this);
+
     this.on('ended', function(){
       this.remove(this.at(0));
       if (this.at(0)) {
         this.playFirst();
       }
+    }, this);
+
+    this.on('enqueueSong', function(song) {
+      debugger;
+      this.add(song);
     }, this);
 
     // this.playFirst();
