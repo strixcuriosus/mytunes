@@ -11,12 +11,12 @@ var SongModel = Backbone.Model.extend({
   },
 
   dequeue: function(){
-    this.destroy(); // ???????
+    this.trigger('dequeue', this); // ???????
   },
 
   enqueue: function() {
     // debugger;
-    this.trigger('enqueueSong', this);
+    this.trigger('enqueue', this);
     console.log('Enqueue trigger fired. P.S. i am a song')
   }
 });
