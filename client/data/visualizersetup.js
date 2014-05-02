@@ -1,85 +1,85 @@
-var initializeVisualizer = function(){
+// var initializeVisualizer = function(){
 
-  // Start off by initializing a new context.
-  context = new (window.AudioContext || window.webkitAudioContext)();
+//   // Start off by initializing a new context.
+//   context = new (window.AudioContext || window.webkitAudioContext)();
 
-  if (!context.createGain)
-    context.createGain = context.createGainNode;
-  if (!context.createDelay)
-    context.createDelay = context.createDelayNode;
-  if (!context.createScriptProcessor)
-    context.createScriptProcessor = context.createJavaScriptNode;
-
-
-  var context = new webkitAudioContext();
-  var audio = $('audio')[0];
-
-  var analyser = context.createAnalyser();
-  var source = context.createMediaElementSource(audio);
+//   if (!context.createGain)
+//     context.createGain = context.createGainNode;
+//   if (!context.createDelay)
+//     context.createDelay = context.createDelayNode;
+//   if (!context.createScriptProcessor)
+//     context.createScriptProcessor = context.createJavaScriptNode;
 
 
-  source.connect(analyser);
-  analyser.connect(context.destination); //speakers
+//   var context = new webkitAudioContext();
+//   var audio = $('audio')[0];
+
+//   var analyser = context.createAnalyser();
+//   var source = context.createMediaElementSource(audio);
 
 
-  var visualizer = function(){
-    var canvas = $('canvas')[0];
-    var drawContext = canvas.getContext("2d");
+//   source.connect(analyser);
+//   analyser.connect(context.destination); //speakers
 
-    canvas.width = WIDTH;
-    canvas.height = HEIGHT;
 
-    drawContext.fillStyle = 'black';
-    drawContext.fillRect(0,0,WIDTH,HEIGHT);
+//   var visualizer = function(){
+//     var canvas = $('canvas')[0];
+//     var drawContext = canvas.getContext("2d");
 
-    analyser.smoothingTimeConstant = SMOOTHING;
-    analyser.fftSize = FFT_SIZE;
+//     canvas.width = WIDTH;
+//     canvas.height = HEIGHT;
 
-    // draw frequency domain
-    var freqDomain = new Uint8Array(analyser.frequencyBinCount);
-    analyser.getByteFrequencyData(freqDomain);
-    for (var i = 0; i < analyser.frequencyBinCount; i++) {
-      var value = freqDomain[i];
-      var percent = value / 256;
-      var height = HEIGHT * percent;
-      var offset = HEIGHT - height - 1;
-      var barWidth = WIDTH/analyser.frequencyBinCount;
-      var hue = i/analyser.frequencyBinCount * 360;
-      drawContext.fillStyle = 'hsl(' + hue + ', 100%, 50%)';
-      drawContext.fillRect(i * barWidth, offset, barWidth, height);
-    }
-    // draw time domain
-    analyser.getByteTimeDomainData(freqDomain);
-    for (var i = 0; i < analyser.frequencyBinCount; i++) {
-      var value = freqDomain[i];
-      var percent = value / 256;
-      var height = HEIGHT * percent;
-      var offset = HEIGHT - height - 1;
-      var barWidth = WIDTH/analyser.frequencyBinCount;
-      drawContext.fillStyle = 'white';
-      drawContext.fillRect(i * barWidth, offset, 1, 2);
-    }
+//     drawContext.fillStyle = 'black';
+//     drawContext.fillRect(0,0,WIDTH,HEIGHT);
 
-    requestAnimFrame(visualizer);
+//     analyser.smoothingTimeConstant = SMOOTHING;
+//     analyser.fftSize = FFT_SIZE;
 
-  };
+//     // draw frequency domain
+//     var freqDomain = new Uint8Array(analyser.frequencyBinCount);
+//     analyser.getByteFrequencyData(freqDomain);
+//     for (var i = 0; i < analyser.frequencyBinCount; i++) {
+//       var value = freqDomain[i];
+//       var percent = value / 256;
+//       var height = HEIGHT * percent;
+//       var offset = HEIGHT - height - 1;
+//       var barWidth = WIDTH/analyser.frequencyBinCount;
+//       var hue = i/analyser.frequencyBinCount * 360;
+//       drawContext.fillStyle = 'hsl(' + hue + ', 100%, 50%)';
+//       drawContext.fillRect(i * barWidth, offset, barWidth, height);
+//     }
+//     // draw time domain
+//     analyser.getByteTimeDomainData(freqDomain);
+//     for (var i = 0; i < analyser.frequencyBinCount; i++) {
+//       var value = freqDomain[i];
+//       var percent = value / 256;
+//       var height = HEIGHT * percent;
+//       var offset = HEIGHT - height - 1;
+//       var barWidth = WIDTH/analyser.frequencyBinCount;
+//       drawContext.fillStyle = 'white';
+//       drawContext.fillRect(i * barWidth, offset, 1, 2);
+//     }
 
-  // shim layer with setTimeout fallback
-  window.requestAnimFrame = (function(){
-  return  window.requestAnimationFrame       ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame    ||
-    window.oRequestAnimationFrame      ||
-    window.msRequestAnimationFrame     ||
-    function( callback ){
-    window.setTimeout(callback, 1000 / 60);
-  };
-  })();
+//     requestAnimFrame(visualizer);
 
-  requestAnimFrame(visualizer);
+//   };
 
-};
-// var audio = $('audio');
+//   // shim layer with setTimeout fallback
+//   window.requestAnimFrame = (function(){
+//   return  window.requestAnimationFrame       ||
+//     window.webkitRequestAnimationFrame ||
+//     window.mozRequestAnimationFrame    ||
+//     window.oRequestAnimationFrame      ||
+//     window.msRequestAnimationFrame     ||
+//     function( callback ){
+//     window.setTimeout(callback, 1000 / 60);
+//   };
+//   })();
+
+//   requestAnimFrame(visualizer);
+
+// };
+// // var audio = $('audio');
 
 // function playSound(buffer, time) {
 //   var source = context.createMediaElementSource(audio);
