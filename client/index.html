@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
+  <canvas></canvas>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
     <script src="bower_components/jquery/jquery.min.js"></script>
@@ -8,6 +9,8 @@
     <script src="bower_components/backbone/backbone.js"></script>
 
     <script src="data/data.js"></script>
+    <script src="data/visualizersetup.js"></script>
+    <script src="data/visualizer.js"></script>
 
     <script src="models/SongModel.js"></script>
     <script src="collections/Songs.js"></script>
@@ -34,7 +37,13 @@
         // put the view onto the screen
         $('body').append(appView.render());
         // debugger;
+
+
       });
+
+        var thesong = "file:///Users/student/Code/ianhenderson/2014-04-mytunes/client/song.mp3";
+
+
     </script>
   </body>
 </html>
