@@ -1,8 +1,8 @@
-var WIDTH = 640;
-var HEIGHT = 360;
+var WIDTH = 1640;
+var HEIGHT = 1360;
 
 // Interesting parameters to tweak!
-var SMOOTHING = 0.8;
+var SMOOTHING = 0.89;
 var FFT_SIZE = 2048;
 
 function VisualizerSample() {

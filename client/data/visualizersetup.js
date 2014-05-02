@@ -25,8 +25,12 @@ var initializeVisualizer = function(){
   var visualizer = function(){
     var canvas = $('canvas')[0];
     var drawContext = canvas.getContext("2d");
+
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
+
+    drawContext.fillStyle = 'black';
+    drawContext.fillRect(0,0,WIDTH,HEIGHT);
 
     analyser.smoothingTimeConstant = SMOOTHING;
     analyser.fftSize = FFT_SIZE;
@@ -43,6 +47,17 @@ var initializeVisualizer = function(){
       var hue = i/analyser.frequencyBinCount * 360;
       drawContext.fillStyle = 'hsl(' + hue + ', 100%, 50%)';
       drawContext.fillRect(i * barWidth, offset, barWidth, height);
+    }
+    // draw time domain
+    analyser.getByteTimeDomainData(freqDomain);
+    for (var i = 0; i < analyser.frequencyBinCount; i++) {
+      var value = freqDomain[i];
+      var percent = value / 256;
+      var height = HEIGHT * percent;
+      var offset = HEIGHT - height - 1;
+      var barWidth = WIDTH/analyser.frequencyBinCount;
+      drawContext.fillStyle = 'white';
+      drawContext.fillRect(i * barWidth, offset, 1, 2);
     }
 
     requestAnimFrame(visualizer);
